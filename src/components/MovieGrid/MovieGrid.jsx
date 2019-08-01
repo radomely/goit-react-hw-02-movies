@@ -3,26 +3,22 @@ import PropTypes from 'prop-types';
 import styles from './MovieGrid.module.css';
 import MovieCard from '../MovieCard/MovieCard';
 
-const MovieGrid = ({ items }) => (
-  <ul className={styles.movieGrid}>
-    {items.map(item => (
-      <li key={item.id}>
-        <MovieCard
-          title={item.title}
-          posterUrl={item.posterUr}
-          overviev={item.overview}
-        />
-      </li>
-    ))}
-  </ul>
-);
+const MovieGrid = ({ items }) =>
+  items.length > 0 ? (
+    <ul className={styles.movieGrid}>
+      {items.map(item => (
+        <li key={item.id}>
+          <MovieCard {...item} />
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <h1>No matching results!</h1>
+  );
 MovieGrid.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      posterUrl: PropTypes.string.isRequired,
-      overview: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
 };

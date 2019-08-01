@@ -1,20 +1,29 @@
 import React, { Fragment, Component } from 'react';
 import MovieGrid from './components/MovieGrid/MovieGrid';
-import movies from './movies.json';
 import SearchBar from './components/SearchBar/SearchBar';
+import movies from './movies.json';
 
-export default class App extends Component() {
+const filterMovies = (moviess, filter) => {
+  return moviess.filter(movie =>
+    movie.title.toLowerCase().includes(filter.toLowerCase()),
+  );
+};
+
+export default class App extends Component {
   state = {
-    value: '',
+    filter: '',
   };
-  handlerOnChange = e => {
-    this.setState({ value: e.target.value });
+  changeFilter = e => {
+    this.setState({ filter: e.target.value });
   };
+
   render() {
+    const { filter } = this.state;
+    const filteredMovies = filterMovies(movies, filter);
     return (
       <Fragment>
-        <SearchBar value={this.state.value} onChange={this.handlerOnChange} />
-        <MovieGrid items={movies} />
+        <SearchBar value={filter} onChange={this.changeFilter} />
+        <MovieGrid items={filteredMovies} />
       </Fragment>
     );
   }

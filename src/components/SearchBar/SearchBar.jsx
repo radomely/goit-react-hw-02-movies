@@ -9,6 +9,7 @@ function SearchBar({ value, onChange }) {
       className={styles.input}
       value={value}
       onChange={onChange}
+      placeholder="Type to filter movies"
     />
   );
 }
