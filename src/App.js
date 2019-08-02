@@ -1,6 +1,7 @@
-import React, { Fragment, Component } from 'react';
+import React, { Component } from 'react';
 import MovieGrid from './components/MovieGrid/MovieGrid';
 import SearchBar from './components/SearchBar/SearchBar';
+import Container from './components/Container/Container';
 import movies from './movies.json';
 
 const filterMovies = (moviess, filter) => {
@@ -21,10 +22,10 @@ export default class App extends Component {
     const { filter } = this.state;
     const filteredMovies = filterMovies(movies, filter);
     return (
-      <Fragment>
+      <Container>
         <SearchBar value={filter} onChange={this.changeFilter} />
         <MovieGrid items={filteredMovies} />
-      </Fragment>
+      </Container>
     );
   }
 }

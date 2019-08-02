@@ -8,7 +8,7 @@ function MovieCard({ title, posterUrl, overview }) {
       <img src={posterUrl} alt={'Poster to ' + { title }} />
       <div className={styles.content}>
         <h2 className={styles.title}>{title}</h2>
-        <p className={styles.descr}>{overview}</p>
+        <p className={styles.descr}>{overview.slice(0, 150)}...</p>
       </div>
     </div>
   );
